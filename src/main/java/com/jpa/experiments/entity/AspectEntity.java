@@ -1,5 +1,7 @@
 package com.jpa.experiments.entity;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -23,14 +25,14 @@ public class AspectEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="aspect_id")
+    @Column(name = "aspect_id")
     int aspectId;
 
     String aspectName;
-  
+
     @EqualsAndHashCode.Exclude
-    @OneToOne(mappedBy = "aspect")
-    AnchorEntity anchors;
+    @OneToMany(mappedBy = "aspect")
+    Set<AnchorEntity> anchors = new HashSet<>();
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

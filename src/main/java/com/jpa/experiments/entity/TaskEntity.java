@@ -1,7 +1,7 @@
 package com.jpa.experiments.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -37,5 +36,5 @@ public class TaskEntity {
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "task")
-    List<AspectEntity> aspects = new ArrayList<>();
+    Set<AspectEntity> aspects = new HashSet<>();
 }
