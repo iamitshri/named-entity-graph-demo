@@ -1,15 +1,9 @@
 # named-entity-graph-demo
 
 
-References that I used for understanding:
-
-- https://docs.spring.io/spring-data/data-jpa/docs/current/reference/html/#jpa.entity-graph
-- https://www.thoughts-on-java.org/jpa-21-entity-graph-part-1-named-entity/
-- https://blog.ippon.tech/boost-the-performance-of-your-spring-data-jpa-application/
-
-Successfully loaded 3 level relationship using single sql query : Task -> Aspects -> Anchors
-
-Avoided MultipleBagFetchException exception by using Set instead of lists.
+- Take a look at TaskEntity.java and TaskRepository.java
+- Successfully loaded 3 level relationship using single sql query : Task -> Aspects -> Anchors
+	- Avoided MultipleBagFetchException exception by using Set instead of lists.
 
 ```sql
 
@@ -36,3 +30,9 @@ Avoided MultipleBagFetchException exception by using Set instead of lists.
             on aspects1_.aspect_id=anchors2_.aspect_id
 
 ```
+
+### References that I used for understanding:
+
+- https://docs.spring.io/spring-data/data-jpa/docs/current/reference/html/#jpa.entity-graph
+- https://www.thoughts-on-java.org/jpa-21-entity-graph-part-1-named-entity/
+- https://blog.ippon.tech/boost-the-performance-of-your-spring-data-jpa-application/
