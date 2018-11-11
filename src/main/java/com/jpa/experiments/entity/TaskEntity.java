@@ -9,8 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
@@ -19,7 +23,9 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Data
 @Table(name = "task")
-@NamedEntityGraph(name="task.aspects",attributeNodes=@NamedAttributeNode("aspects"))
+@NamedEntityGraph(name = "task.aspects",
+        attributeNodes = {@NamedAttributeNode(value = "aspects", subgraph = "task.aspects.anchors")},
+        subgraphs = {@NamedSubgraph(name = "task.aspects.anchors",attributeNodes = {@NamedAttributeNode("anchors")})})
 public class TaskEntity {
 
     @Id
@@ -29,6 +35,7 @@ public class TaskEntity {
 
     String taskName;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "task")
     List<AspectEntity> aspects = new ArrayList<>();
 }

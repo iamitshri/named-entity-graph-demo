@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AccessLevel;
 import lombok.Data;
@@ -28,7 +29,7 @@ public class AnchorEntity {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "aspect_id", referencedColumnName = "aspect_id")
     AspectEntity aspect;
 }

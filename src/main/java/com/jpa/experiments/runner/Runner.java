@@ -25,7 +25,7 @@ public class Runner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         log.debug("*** START ***");
 
-      for (TaskEntity task : taskRepo.findByTaskIdNotNull()) {
+      for (TaskEntity task : taskRepo.findAll()) {
             log.debug(task.toString());
         }
  
